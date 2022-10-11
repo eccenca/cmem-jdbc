@@ -5,9 +5,9 @@ This project allows to SPARQL query CMEM using one of the most used RDF framewor
 
 ## Usage
 
-1) Setup your credentials:
+### 1) Setup your credentials:
 
-### Client Credentials
+#### Client Credentials
 
 ```
 CMEMOAUTH2Authenticator authenticator = new CMEMOAUTH2Authenticator()
@@ -21,7 +21,7 @@ CMEMOAUTH2Authenticator authenticator = new CMEMOAUTH2Authenticator()
 
 or
 
-### Password
+#### Password
 
 ```
 CMEMOAUTH2Authenticator authenticator = new CMEMOAUTH2Authenticator()
@@ -33,7 +33,7 @@ CMEMOAUTH2Authenticator authenticator = new CMEMOAUTH2Authenticator()
 		            .host(endpoint);
 ```
 
-2) Execute a SPARQL query:
+### 2) Execute a SPARQL query:
 
 ```
  try (RDFConnection conn = connectionBuilder.build()) {
