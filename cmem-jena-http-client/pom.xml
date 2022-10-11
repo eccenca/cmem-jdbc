@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.eccenca</groupId>
+  <artifactId>cmem-jena-http-client</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>cmem JENA Http Client</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>11</java.version>
+  </properties>
+
+  <dependencies>
+		<dependency>
+		  <groupId>com.fasterxml.jackson.dataformat</groupId>
+		  <artifactId>jackson-dataformat-yaml</artifactId>
+		  <version>2.11.2</version>
+		</dependency>
+	    <dependency>
+		    <groupId>com.squareup.okhttp3</groupId>
+		    <artifactId>okhttp</artifactId>
+		    <version>4.9.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20210307</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.jena</groupId>
+		    <artifactId>jena</artifactId>
+		    <version>4.3.2</version>
+		    <type>pom</type>
+		</dependency>
+			<dependency>
+		    <groupId>org.aksw.jena-sparql-api</groupId>
+		    <artifactId>jena-sparql-api-update</artifactId>
+		    <version>3.17.0-1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.jena</groupId>
+		    <artifactId>jena-rdfconnection</artifactId>
+		    <version>4.3.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.jena</groupId>
+		    <artifactId>jena-dboe-base</artifactId>
+		    <version>4.3.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.jena</groupId>
+		    <artifactId>jena-jdbc-driver-remote</artifactId>
+		    <version>4.3.2</version>
+		    <exclusions>
+		    	<exclusion>
+		            <groupId>org.slf4j</groupId>
+		            <artifactId>slf4j-log4j</artifactId>
+		        </exclusion>
+		        <exclusion>
+		            <groupId>org.apache.logging.log4j</groupId>
+		            <artifactId>log4j-slf4j-impl</artifactId>
+		        </exclusion>
+		    </exclusions>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.jena</groupId>
+		    <artifactId>jena-core</artifactId>
+		    <version>4.3.2</version>
+		</dependency>
+		 <dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		   <version>2.11.0</version>
+		</dependency>
+  </dependencies>
+  <build>
+    <plugins>
+	     <plugin>    
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <configuration>
+	            <source>${java.version}</source>
+	            <target>${java.version}</target>
+	        </configuration>
+	     </plugin>
+    </plugins>
+  </build>
+</project>
