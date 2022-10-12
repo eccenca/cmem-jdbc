@@ -1,0 +1,28 @@
+# https://taskfile.dev
+---
+version: '3'
+
+tasks:
+
+  default:
+    summary: |
+      Just a list of documented tasks.
+    silent: true
+    cmds:
+      - task --list
+
+  clean:
+    desc: mvn clean target
+    cmds:
+      - cd cmem-jena-http-client; mvn clean
+
+  build:
+    desc: Build target - mvn package
+    cmds:
+      - cd cmem-jena-http-client; mvn -B package --file pom.xml
+
+  check:
+    desc: Run whole test suite.
+    cmds:
+      - cd cmem-jena-http-client; mvn -B verify --file pom.xml
+
