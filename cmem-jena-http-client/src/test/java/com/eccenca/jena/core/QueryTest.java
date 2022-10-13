@@ -71,9 +71,9 @@ public class QueryTest {
 	}
 	
 	public static boolean isEnviromentSet() {
-		return (System.getProperty("CMEM_BASE_URI") != null) && 
-				(System.getProperty("OAUTH_CLIENT_SECRET") != null) && 
-				(System.getProperty("OAUTH_CLIENT_ID") != null);
+		return (System.getenv("CMEM_BASE_URI") != null) && 
+				(System.getenv("OAUTH_CLIENT_SECRET") != null) && 
+				(System.getenv("OAUTH_CLIENT_ID") != null);
 	}
 
 	/**
