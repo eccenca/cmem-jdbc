@@ -84,15 +84,15 @@
 		</dependency>
 		<dependency>
 		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-engine</artifactId>
-		    <version>5.8.1</version>
+		    <artifactId>junit-jupiter-params</artifactId>
+		    <version>5.9.1</version>
 		    <scope>test</scope>
 		</dependency>
 		<dependency>
-		  <groupId>junit</groupId>
-		  <artifactId>junit</artifactId>
-		  <version>4.13.1</version>
-		  <scope>test</scope>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-engine</artifactId>
+		    <version>5.9.1</version>
+		    <scope>test</scope>
 		</dependency>
   </dependencies>
   <build>
@@ -105,17 +105,29 @@
 	        </configuration>
             <version>3.10.1</version>
 	     </plugin>
-	     <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.0.0-M7</version>
-            <configuration>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M7</version>
+           <configuration>
                 <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                 <argLine>--add-opens java.base/java.util=ALL-UNNAMED</argLine>
                 <argLine>--add-opens java.base/java.io=ALL-UNNAMED</argLine>
             </configuration>
-
         </plugin>
-    </plugins>
+      </plugins>
+    </pluginManagement>
   </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M7</version>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>

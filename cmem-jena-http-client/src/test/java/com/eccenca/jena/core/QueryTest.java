@@ -1,13 +1,14 @@
 package com.eccenca.jena.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdfconnection.RDFConnection;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.jupiter.api.condition.DisabledIf;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledIf;
 
 import com.eccenca.jena.core.OAUTH2Authenticator.GrantType;
 
@@ -21,12 +22,10 @@ import com.eccenca.jena.core.OAUTH2Authenticator.GrantType;
  *         properly set.
  *
  */
-@DisabledIf("java.lang.System.getProperty('CMEM_BASE_URI') == null || "
-		+ "java.lang.System.getProperty('OAUTH_CLIENT_SECRET') == null ||"
-		+ "java.lang.System.getProperty('OAUTH_CLIENT_ID')")
+@EnabledIf("isEnviromentSet")
 public class QueryTest {
 
-	private CMEMOAUTH2RemoteRequestBuilder connectionBuilder = null;
+	private static CMEMOAUTH2RemoteRequestBuilder connectionBuilder = null;
 
 	private final static String UPDATE_QUERY = "INSERT DATA { GRAPH <http://cmem.jdbc.test> {\n"
 			+ "  <person0> <firstname> \"Jay\" .\n" + "  <person0> <lastname> \"Stevens\" .\n"
@@ -35,7 +34,7 @@ public class QueryTest {
 	private final static String SELECT_QUERY = "Select ?s ?p ?o where { graph <http://cmem.jdbc.test> {?s ?p ?o}}";
 	private final static String DELETE_QUERY = "DROP graph <http://cmem.jdbc.test>";
 
-	@Before
+	@BeforeEach
 	public void start() {
 		CMEMOAUTH2Authenticator authenticator = new CMEMOAUTH2Authenticator()
 				.clientId(System.getenv("OAUTH_CLIENT_ID"))
@@ -45,7 +44,7 @@ public class QueryTest {
 				.host(System.getenv("CMEM_BASE_URI"));
 	}
 
-	@After
+	@AfterEach
 	public void stop() {
 		// remove any remaining data in case some test fail
 		clear();
@@ -66,9 +65,15 @@ public class QueryTest {
 					rs.next();
 					i++;
 				}
-				Assert.assertEquals(n, i);
+				assertEquals(n, i);
 			}
 		}
+	}
+	
+	public static boolean isEnviromentSet() {
+		return (System.getProperty("CMEM_BASE_URI") != null) && 
+				(System.getProperty("OAUTH_CLIENT_SECRET") != null) && 
+				(System.getProperty("OAUTH_CLIENT_ID") != null);
 	}
 
 	/**
