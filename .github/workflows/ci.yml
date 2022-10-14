@@ -33,6 +33,9 @@ jobs:
     - name: task clean check build
       run: task clean check build
 
+    - name: find . -name "*.xml"
+      run: find . -name "*.xml"
+
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
