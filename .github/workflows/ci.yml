@@ -2,6 +2,12 @@
 # https://github.com/actions/starter-workflows/blob/main/ci/maven.yml
 name: ci
 
+env:
+  CMEM_BASE_URI: ${{ secrets.CMEM_BASE_URI }}
+  OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+  OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+  OAUTH_GRANT_TYPE: ${{ secrets.OAUTH_GRANT_TYPE }}
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for main
