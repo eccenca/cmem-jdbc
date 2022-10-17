@@ -25,25 +25,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'adopt'
-        cache: maven
+      - uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          cache: maven
 
-    - name: Install Task
-      uses: arduino/setup-task@v1
+      - name: Install Task
+        uses: arduino/setup-task@v1
 
-    - name: task clean check build
-      run: task clean check build
+      - name: task clean check build
+        run: task clean check build
 
-    - name: find . -name "*.xml"
-      run: find . -name "*.xml"
+      - name: find . -name "*.xml"
+        run: find . -name "*.xml"
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: cmem-jena-http-client JAR
-        path: cmem-jena-http-client/target/*.jar
+      - name: Publish Test Report in Action
+        uses: mikepenz/action-junit-report@v3
+        if: always()  # always run even if the previous step fails
+        with:
+          report_paths: "*/target/surefire-reports/*.xml"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cmem-jena-http-client JAR
+          path: cmem-jena-http-client/target/*.jar
+
