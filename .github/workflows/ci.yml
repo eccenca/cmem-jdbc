@@ -41,9 +41,6 @@ jobs:
       - name: task clean check build
         run: task clean check build
 
-      - name: find . -name "*.xml"
-        run: find . -name "*.xml"
-
       - name: Publish Test Report in Action
         uses: mikepenz/action-junit-report@v3
         if: always()  # always run even if the previous step fails
